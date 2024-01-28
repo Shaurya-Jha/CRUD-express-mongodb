@@ -8,6 +8,9 @@ const dbConfig = require('./config/database.config.js');
 // mongoose module
 const mongoose = require("mongoose");
 
+// user route for all the api methods
+const UserRoute = require("./routes/user.route.js")
+
 mongoose.Promise = global.Promise;
 
 mongoose.connect(dbConfig.url)
@@ -37,6 +40,8 @@ app.get('/', (req, res) => {
         "message":"Hello CRUD Node Express"
     })
 });
+
+app.use("/user", UserRoute)
 
 app.listen(3000, () => {
     console.log('Server is listening on port 3000');
